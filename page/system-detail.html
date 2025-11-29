@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>システムの詳しい説明 | 通行止め交通影響シミュレーター</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        通行止め交通影響シミュレーター
+      </div>
+      <nav class="site-nav">
+        <a href="../index.html#hero">トップ</a>
+        <a href="../index.html#about">システム概要</a>
+        <a href="../index.html#features">強み</a>
+        <a href="roadmap.html">今後の展望</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="section-title">システムの詳しい説明</h1>
+        <p class="section-lead">
+          このページでは、「通行止め交通影響シミュレーター」で使用している
+          モデルや計算ロジックの考え方を、できるだけやさしいことばで説明します。
+          数式よりも「どういう発想で動いているか」が伝わることを重視しています。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">1. このシステムが目指しているもの</h2>
+        <p class="section-text">
+          本システムは、<strong>通行止めや車線規制をしたときに、周辺道路の交通量がどのように変化するか</strong>を、
+          地図上で素早くイメージできるようにすることを目的としています。<br />
+          本格的な交通シミュレーターのように細かい車両挙動まで再現するのではなく、
+          <strong>「どの道路にどのくらい流れが移るのか」を大まかに掴む</strong>ことに特化した「軽量モデル」です。
+        </p>
+        <p class="section-text">
+          想定している主な利用場面は次のとおりです。
+        </p>
+        <ul class="roadmap-list">
+          <li>工事による通行止めの事前検討（どの規制案が一番影響が小さいかの比較）</li>
+          <li>技術提案書や社内検討資料の「たたき台」としての交通量イメージ作成</li>
+          <li>住民説明・社内説明の際の「影響イメージ」を共有する補助ツール</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">2. データとゾーンの考え方</h2>
+        <p class="section-text">
+          計算の出発点は、<strong>ゾーンごとの「基準交通量」</strong>です。ゾーンとは、市町丁丁目などの小地域単位をイメージしてください。
+        </p>
+        <p class="section-text">
+          本システムでは、おおまかに次のような情報を組み合わせて、ゾーンごとの交通量の土台を作っています。
+        </p>
+        <ul class="roadmap-list">
+          <li>交通センサスなどの観測交通量データ（幹線道路の実測値）</li>
+          <li>人口・産業・土地利用などの統計データ</li>
+          <li>道路種別（国道・県道・市道など）とリンクごとの位置関係</li>
+        </ul>
+        <p class="section-text">
+          これらをもとに、ゾーンごとに「どのくらい車が出入りしやすいか（発生・集中量）」を推定し、
+          それを道路ネットワーク上の区画（リンクのまとまり）に割り振ることで、
+          <strong>工事をしていない平常時の交通量分布</strong>を作ります。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">3. 幹線道路と生活道路の役割分担</h2>
+        <p class="section-text">
+          本システムでは、道路を大きく<strong>「幹線道路」と「生活道路」</strong>に分けて扱います。
+        </p>
+        <h3 class="feature-title">幹線道路</h3>
+        <p class="section-text">
+          幹線道路（国道・県道など）は、<strong>広い範囲の移動を担当する「太いパイプ」</strong>として扱います。<br />
+          基準交通量からの減衰は小さく、ゾーンの外から入ってくる交通も多く受け持つ前提です。
+        </p>
+        <h3 class="feature-title">生活道路</h3>
+        <p class="section-text">
+          生活道路（市道・住宅地内の道路など）は、<strong>ゾーン内部の細かな移動や出入り</strong>を扱うイメージです。<br />
+          幹線から離れるほど交通量が自然に減るように、距離に応じた「減衰」をかけています。
+        </p>
+        <p class="section-text">
+          このように役割を分けることで、<strong>幹線は太く・生活道は細く</strong>という、現実に近い交通量のバランスを、
+          軽い計算で再現することを目指しています。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">4. 時間帯と「魅力度」の考え方</h2>
+        <p class="section-text">
+          交通量は時間帯によって大きく変化します。朝の通勤時間帯、夕方の帰宅・買い物時間帯など、
+          目的地の「引きつけられやすさ（魅力度）」も変わります。
+        </p>
+        <p class="section-text">
+          本システムでは、ゾーンや施設の種類ごとに<strong>時間帯別の魅力度</strong>を設定し、次のような考え方で交通量を調整しています。
+        </p>
+        <ul class="roadmap-list">
+          <li>朝ピーク（通勤・通学）では、住宅地 → 業務地・学校へ向かう流れを強める</li>
+          <li>夕方〜夜は、業務地 → 住宅地、住宅地 → 商業施設への流れを強める</li>
+          <li>施設の種類（大型商業施設・業務地・学校・物流拠点など）に応じて、魅力度の時間変化を変える</li>
+        </ul>
+        <p class="section-text">
+          こうした魅力度を通して、単に「距離が近いから行く」のではなく、
+          <strong>時間帯ごとの人の動き方</strong>を、簡易的にモデル化しています。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">5. 通行止め時の迂回の考え方</h2>
+        <p class="section-text">
+          通行止めを設定すると、本システムは次のような流れで迂回を表現します。
+        </p>
+        <ol class="roadmap-list">
+          <li>通行止め区間を含むルートを通れないものとして扱う</li>
+          <li>そのルートを通っていた交通量を、近くの幹線・代替ルートへ振り分ける</li>
+          <li>幹線と生活道路の役割分担や、距離による減衰ルールにもとづき、周辺区間の交通量を再計算する</li>
+        </ol>
+        <p class="section-text">
+          実際のドライバーは、カーナビ・案内看板・土地勘などを頼りにさまざまな経路を選びますが、
+          本システムではそれらをすべて再現するのではなく、<strong>合理的な迂回が行われた場合の「平均的な挙動」</strong>を
+          表すことを目標にしています。
+        </p>
+        <p class="section-text">
+          そのため、個々の車両の細かい動きではなく、<strong>道路区間ごとの通行量（台／日・台／時間など）</strong>の変化に着目したモデルになっています。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">6. モデルの位置づけと限界</h2>
+        <p class="section-text">
+          本システムのモデルは、次のような前提・割り切りを置いたうえで設計されています。
+        </p>
+        <ul class="roadmap-list">
+          <li>走行速度や信号サイクル、渋滞波の伝播などは詳細には扱っていません</li>
+          <li>歩行者や自転車交通は原則として含めず、自動車交通に焦点を当てています</li>
+          <li>災害時のような極端な交通需要の変化は、現状のモデル範囲外です</li>
+        </ul>
+        <p class="section-text">
+          その代わりに、<strong>「計算が速い」「ロジックを説明しやすい」「データの準備が少なくて済む」</strong>ことを重視しており、
+          現場での検討・説明のための<strong>簡易シミュレーター</strong>という位置づけになっています。
+        </p>
+        <p class="section-text">
+          実際の交通管理計画を決定する際には、現地状況・安全面・運用上の制約なども必ずあわせて検討し、
+          必要に応じて詳細な検討（別途シミュレーションや現地調査）を行うことを前提としています。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">7. 今後の拡張の方向性</h2>
+        <p class="section-text">
+          今後は、以下のような方向でモデルの高度化・拡張を検討しています。
+        </p>
+        <ul class="roadmap-list">
+          <li>対象エリアや対象時間帯の拡大</li>
+          <li>物流交通・業務交通など、用途別の交通の扱いの追加</li>
+          <li>現場や利用者からのフィードバックにもとづくパラメータ調整</li>
+          <li>将来的な都市計画シミュレーション（人口・土地利用変化など）との連携</li>
+        </ul>
+        <p class="section-text">
+          これらの拡張を行う際も、「現場で説明しやすい」「使う人が理解しやすい」ことを重視しながら、
+          一歩ずつモデルの精度と表現力を高めていく方針です。
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

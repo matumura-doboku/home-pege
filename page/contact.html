@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>お問い合わせ | 通行止め交通影響シミュレーター</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        通行止め交通影響シミュレーター
+      </div>
+      <nav class="site-nav">
+        <a href="../index.html#hero">トップ</a>
+        <a href="../index.html#about">システム概要</a>
+        <a href="../index.html#features">強み</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="section-title">お問い合わせ</h1>
+        <p class="section-lead">
+          本システムに関するご質問・ご要望・不具合のご連絡などがありましたら、
+          下記フォームよりお気軽にお送りください。
+        </p>
+        <p class="section-text">
+          送信ボタンを押すと、お使いのメールソフトが起動し、
+          開発者宛てのメール（<strong>matsumuradouro@gmail.com</strong>）が作成されます。
+          内容を確認のうえ、送信してください。
+        </p>
+
+        <form class="contact-form" action="mailto:matsumuradouro@gmail.com" method="post" enctype="text/plain">
+          <div class="form-row">
+            <label for="name">お名前</label>
+            <input type="text" id="name" name="お名前" required />
+          </div>
+          <div class="form-row">
+            <label for="org">会社名・ご所属（任意）</label>
+            <input type="text" id="org" name="会社名・ご所属" />
+          </div>
+          <div class="form-row">
+            <label for="email">ご連絡先メールアドレス</label>
+            <input type="email" id="email" name="メールアドレス" required />
+          </div>
+          <div class="form-row">
+            <label for="type">お問い合わせ種別</label>
+            <select id="type" name="お問い合わせ種別">
+              <option value="導入のご相談">導入のご相談</option>
+              <option value="機能に関するご質問">機能に関するご質問</option>
+              <option value="不具合のご連絡">不具合のご連絡</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">お問い合わせ内容</label>
+            <textarea id="message" name="お問い合わせ内容" rows="6" required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">メールソフトを起動して送信</button>
+          </div>
+        </form>
+
+        <p class="section-text" style="margin-top: 16px; font-size: 12px; color: #666;">
+          ※お使いの環境によっては、ブラウザやメールソフトの設定によりうまく動作しない場合があります。
+          その際は、お手数ですが <strong>matsumuradouro@gmail.com</strong> 宛てに直接メールをお送りください。
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

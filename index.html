@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>通行止め交通影響シミュレーター </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        通行止め交通影響シミュレーター
+      </div>
+      <nav class="site-nav">
+        <a href="#hero">トップ</a>
+        <a href="#about">システム概要</a>
+        <a href="#features">強み</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSck32jCYJTGpG_TeLDjMXgTJWONZXnjyoNyLNzKHC87gg8OyA/viewform"
+        target="_blank" rel="noopener">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ① キャッチコピー（1分で何のシステムか分かる） -->
+    <section id="hero" class="hero fade-target">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="hero-tagline">工事・通行止め前の“もしも”を、地図の上で即チェック</p>
+          <h1 class="hero-title">
+            通行止め時の交通影響を<br />
+            ブラウザで一瞬シミュレーション
+          </h1>
+          <p class="hero-lead">
+            工事や規制で道路を止めたとき、<br />
+            どの道路にどれだけ交通が流れるのかを<br />
+            地図上で直感的に確認できる、<br />
+            軽量な交通影響シミュレーターです。（実験公開中）
+          </p>
+          <div class="hero-actions">
+            <a href="https://koredeikitai.pages.dev/" class="btn-primary" target="_blank" rel="noopener">
+              実験公開版を開く（PC推奨）
+            </a>
+            <a href="page/system-detail.html" class="btn-secondary">
+              システムの説明を見る
+            </a>
+          </div>
+          <p class="hero-note">
+            ※現在は試験版のため、計算結果は参考値としてご利用ください。
+          </p>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-placeholder">
+            <img src="img/sim-screen.png" alt="通行止め交通影響シミュレーターの画面イメージ">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ② システムの説明文 + 強み（概要と強みをまとめて） -->
+    <section id="about" class="section about fade-target">
+      <div class="container">
+        <h2 class="section-title">このシステムについて</h2>
+        <p class="section-lead">
+          「通行止め交通影響シミュレーター」は、<br />
+          交通センサスや統計データにもとづいた簡易モデルを使い、<br />
+          通行止め時の交通量の変化を、地図の上で素早く確認するためのツールです。
+        </p>
+        <p class="section-text">
+          通行止めや車線規制の検討は、これまで「図面＋経験則」に依存する部分が大きく、
+          <br />迂回先の交通量を説明する資料づくりにも時間がかかっていました。
+          <br />
+          本システムでは、地図上で通行止め区間を指定するだけで、
+          幹線道路・生活道路・時間帯別の交通量の変化を簡易的に計算し、
+          “<strong>影響のイメージ</strong>”を素早く共有できることを目指しています。
+        </p>
+      </div>
+    </section>
+
+    <section id="features" class="section features fade-target">
+      <div class="container">
+        <h2 class="section-title">システムの強み</h2>
+        <div class="features-grid">
+          <article class="feature-card">
+            <h3 class="feature-title">1. 地図上で直感的に操作</h3>
+            <p class="feature-text">
+              通行止めしたい区間を地図上でクリックして指定するだけで、
+              迂回経路と交通量の変化を色分け表示します。
+              CAD や複雑な専用ソフトの操作は不要です。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <h3 class="feature-title">2. 軽量な交通量計算モデル</h3>
+            <p class="feature-text">
+              交通センサスと統計データを組み合わせた独自の軽量モデルを採用。
+              幹線道路と生活道路、時間帯、ゾーンごとの“魅力度”を考慮しながら、
+              「大きくは外さない」レベルの簡易シミュレーションを実現しています。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <h3 class="feature-title">3. ブラウザだけで動作（PC推奨）</h3>
+            <p class="feature-text">
+              インストール不要で、ブラウザ上で動作します（PC利用を推奨）。
+              現場・事務所・自宅など、場所を問わず同じ環境で確認できます。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <h3 class="feature-title">4. レポートづくりの“たたき台”に</h3>
+            <p class="feature-text">
+              通行止め前後の交通量や、影響の大きい区間を一覧で確認できるため、
+              説明資料や社内検討メモのたたき台として活用できます。
+              最終判断は、現場条件や専門的な知見とあわせて行うことを想定しています。
+            </p>
+          </article>
+        </div>
+      </div>
+          <section id="roadmap" class="section roadmap fade-target">
+        <div class="container">
+          <h2 class="section-title">これからの展望</h2>
+          <p class="section-lead">
+            現在は広島エリアを対象とした実験公開版として開発を進めていますが、<br />
+            今後は対象エリアの拡大や、都市計画シミュレーションとの連携も視野に入れ製品としての販売を考えています。
+          </p>
+          <ul class="roadmap-list">
+            <li>対象エリアの拡大と、交通データの追加・更新</li>
+            <li>レポート機能の強化（比較・印刷向けレイアウトなど）</li>
+            <li>自社データ（独自観測値など）との連携機能の検討</li>
+            <li>将来的な都市計画・人口分布シミュレータとの連携</li>
+          </ul>
+          <div class="section-actions">
+            <a href="page/roadmap.html" class="btn-secondary">
+              今後の展望の詳しい内容を見る
+            </a>
+          </div>
+        </div>
+      </section>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-text">
+        通行止め交通影響シミュレーター（実験公開版）<br />
+        本ツールの計算結果は参考値であり、最終的な交通管理・安全確保の判断は、
+        必ず現地状況と専門的な検討にもとづいて行ってください。
+      </p>
+    </div>
+  </footer>
+
+  <!-- JS: スクロール時にフェードインさせる簡単な動き -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const targets = document.querySelectorAll(".fade-target");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      targets.forEach((el) => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
